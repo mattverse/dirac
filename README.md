@@ -2,6 +2,8 @@
 
 This project is a single-page web application in TypeScript + React with a tree model component and a 3D view using ThreeJS that allows a user to input geometric primitives to create a composite model hierarchy, with nested subassemblies and bottom-level parts.
 
+Live Demo: https://dirac-rho.vercel.app/
+
 ## Core Technology & Libraries Used 
 - **React**: Frontend UI framework
 - **TypeScript**: Type-safe JavaScript
