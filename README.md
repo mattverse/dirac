@@ -27,8 +27,8 @@ Live Demo: https://dirac-rho.vercel.app/
 1. Clone the repository:
 
 ```shellscript
-git clone https://github.com/mattverse/3d-scene-editor.git
-cd 3d-scene-editor
+git clone https://github.com/mattverse/dirac.git
+cd dirac
 ```
 
 
