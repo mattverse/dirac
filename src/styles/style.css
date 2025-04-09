@@ -1,0 +1,434 @@
+/* Global base styles */
+html,
+body,
+#root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  margin: 0;
+  font-family: system-ui;
+}
+
+/* Form elements */
+button,
+select,
+input {
+  font-family: inherit;
+}
+
+/* Canvas setup */
+canvas {
+  display: block;
+  outline: none;
+}
+
+/* Sidebar main container */
+.sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 380px;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+/* Collapsed state */
+.sidebar-collapsed {
+  transform: translateX(-370px);
+}
+
+/* Scrollable content area */
+.sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sidebar toggle button */
+.sidebar-toggle {
+  position: absolute;
+  top: 50%;
+  right: -16px;
+  width: 32px;
+  height: 40px;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-left: 0;
+  border-radius: 0 8px 8px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transform: translateY(-50%);
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+  z-index: 1001;
+}
+
+/* Collapse/expand arrow animation */
+.sidebar-toggle svg {
+  transition: transform 0.3s ease;
+}
+
+.sidebar-collapsed .sidebar-toggle svg {
+  transform: rotate(180deg);
+}
+
+/* Header section styling */
+.panel-header {
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Title typography */
+.panel-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 4px 0;
+}
+
+/* Subtitle styling */
+.panel-subtitle {
+  font-size: 12px;
+  color: #666;
+  margin: 0;
+}
+
+/* Tab container */
+.tabs {
+  display: flex;
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Tab button styling */
+.tab-button {
+  flex: 1;
+  background: none;
+  border: 0;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s;
+}
+
+/* Active tab indicator */
+.tab-button.active {
+  color: #4f46e5;
+}
+
+.tab-button.active::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #4f46e5;
+}
+
+.tab-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Form layout */
+.form-group {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+/* Input/select styling */
+.form-control {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+  height: 36px;
+  box-sizing: border-box;
+}
+
+/* Form input focus state */
+.form-control:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.1);
+}
+
+/* Base button styles */
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+/* Primary button variant */
+.btn-primary {
+  background: #4f46e5;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #4338ca;
+}
+
+/* Tree view container */
+.tree-container {
+  margin-top: 20px;
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* Tree node styling */
+.tree-node {
+  position: relative;
+  margin-bottom: 4px;
+}
+
+.tree-node-level-0 {
+  margin-left: 0;
+}
+
+/* Node content hierarchy */
+.tree-node-content {
+  position: relative;
+  z-index: 2;
+}
+
+.tree-node-children {
+  position: relative;
+  z-index: 1;
+  margin-left: 20px;
+}
+
+/* Drop target styling */
+.drop-zone {
+  position: relative;
+  height: 8px;
+  z-index: 10;
+  transition: all 0.15s ease;
+  margin: 2px 0;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+/* Drop zone variants */
+.drop-zone-before,
+.drop-zone-after {
+  background: rgba(79, 70, 229, 0.1);
+  border: 1px dashed rgba(79, 70, 229, 0.3);
+}
+
+.drop-zone-between {
+  height: 16px;
+  background: rgba(79, 70, 229, 0.15);
+  border: 1px dashed rgba(79, 70, 229, 0.4);
+}
+
+.drop-zone-child {
+  margin-left: 20px !important;
+  width: calc(100% - 20px) !important;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px dashed rgba(16, 185, 129, 0.3);
+}
+
+/* Active drop states */
+.drop-zone.active {
+  height: 28px;
+  border-radius: 0;
+  margin: 4px 0;
+}
+
+.drop-zone-before.active,
+.drop-zone-after.active,
+.drop-zone-between.active {
+  background: rgba(79, 70, 229, 0.2);
+  margin: 6px 0;
+}
+
+.drop-zone-between.active {
+  background: rgba(79, 70, 229, 0.25);
+  border: 1px solid #4f46e5;
+}
+
+/* Drop zone indicators */
+.drop-zone-before.active::after,
+.drop-zone-after.active::after,
+.drop-zone-between.active::after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  background: #4f46e5;
+  z-index: 11;
+}
+
+.drop-zone-before.active::before,
+.drop-zone-after.active::before,
+.drop-zone-between.active::before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4f46e5;
+  z-index: 12;
+}
+
+/* Child drop zone active state */
+.drop-zone-child.active {
+  background: rgba(16, 185, 129, 0.2);
+  border-left: 3px solid #10b981;
+}
+
+/* Draggable node states */
+.draggable-node {
+  padding: 8px 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s;
+  z-index: 5;
+}
+
+.draggable-node:hover {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.draggable-node.dragging {
+  opacity: 0.5;
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
+
+.draggable-node.selected {
+  border-color: #4f46e5;
+  background: rgba(79, 70, 229, 0.05);
+}
+
+/* Node metadata styling */
+.node-type {
+  font-size: 12px;
+  color: #666;
+  background: rgba(243, 244, 246, 0.7);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.node-name {
+  font-weight: 500;
+  color: #333;
+}
+
+/* Property editor layout */
+.property-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Property editor title */
+.property-editor-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+/* Form group layout */
+.property-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Input labels */
+.property-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Axis input row */
+.property-row {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+/* Individual axis input */
+.property-axis {
+  display: flex;
+  flex-direction: column;
+  width: 60px;
+}
+
+/* Axis label styling */
+.axis-label {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 2px;
+  text-align: left;
+  padding-left: 6px;
+}
+
+/* Number input styling */
+.property-axis .form-control {
+  padding: 8px 6px;
+  text-align: left;
+  font-size: 14px;
+  width: 100%;
+}
+
+/* Color picker input */
+.color-picker {
+  width: 100%;
+  height: 40px;
+  padding: 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Drag handle interaction */
+.drag-handle {
+  cursor: move;
+  padding: 4px;
+  margin-right: 8px;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.draggable-node:hover .drag-handle {
+  opacity: 1;
+}
+
+/* Helper text styling */
+.property-note {
+  font-size: 12px;
+  color: #666;
+  font-style: italic;
+  margin: 0;
+}
